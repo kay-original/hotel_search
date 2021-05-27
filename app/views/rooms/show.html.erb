@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+<div class="contents-width detail-contents">
+  <div class="room-detail">
+    <p>
+      <% if @room.room_image? %>
+      <%= image_tag @room.room_image.to_s %>
+      <% else %>
+      <%= image_tag "noimage.svg" %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>部屋名：</strong>
+      <%= @room.name %>
+    </p>
+
+    <p>
+      <strong>エリア：</strong>
+      <%= @room.address %>
+    </p>
+    <p>
+      <strong>詳細：</strong> <br>
+      <%= @room.introduction %>
+    </p>
+
+    <p>
+      <strong>一泊一人あたり料金：</strong>
+      <%= @room.charge %>円
+    </p>
+    <br>
+    <div class="option">
+      <% if @user == current_user %>
+      <%= link_to '編集', edit_room_path(@room), class:"button is-dark" %> |
+      <%= button_to '削除', room_path(@room), method: :delete, data: { confirm: 'Are you sure?' }, class:"button is-dark" %> |
+      <%= link_to '戻る', rooms_path, class:"button is-dark" %>
+      <% else %>
+      <%= link_to '戻る', rooms_path, class:"button is-dark" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="reservation-form">
+    <%= form_with url: new_reservation_path, method: :get do |form| %>
+      <h3>一泊一人あたり料金：<%= @room.charge %>円</h3>
+      <%= form.hidden_field :charge, :value => @room.charge %>
+      <div class="field">
+        <%= form.label :入室日 %>
+        <%= form.date_field :started_at %>
+      </div>
+    
+      <div class="field">
+        <%= form.label :退室日 %>
+        <%= form.date_field :finished_at %>
+      </div>
+    
+      <div class="field">
+        <%= form.label :人数 %>
+        <%= form.number_field :peoples %>
+      </div>
+            
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+      <%= form.hidden_field :room_id, :value => @room.id %>
+
+      <div class="actions">
+        <%= form.submit '予約する'%>
+      </div>
+    <% end %>
+  </div>
+</div>

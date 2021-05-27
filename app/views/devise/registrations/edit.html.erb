@@ -1,0 +1,52 @@
+<header class="everypage-head contents-width">
+  <h1>アカウント変更</h1>
+</header>
+<div class="form contents-width">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :ユーザー名 %>
+      <%= f.text_field :username, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :メールアドレス %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :パスワード %> <i>(変更時のみ入力)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :パスワード確認 %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :現在のパスワード %><i>(変更の為には現在のパスワードが必要です)。</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "変更する", class: "button is-dark" %>
+    </div>
+  <% end %>
+  <div class="field">
+    <h3>〜アカウントを削除〜</h3>
+
+    <p>現在のアカウントを削除しますか？ <%= button_to "削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button is-dark" %></p>
+  </div>
+  <%= link_to "戻る", :back %>
+</div>

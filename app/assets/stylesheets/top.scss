@@ -1,0 +1,51 @@
+// Place all the styles related to the top controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.main1{
+  height: 560px;
+  background-size: cover;
+  background-image: url(/villa-1737168_1920.jpg);
+}
+.main1-header{
+  font-size: 30px;
+  text-align: center;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  font-weight: bold;
+}
+.search-block{
+  text-align: center;
+}
+.search{
+  padding: 30px;
+  background-color: rgba(252, 233, 208,0.9);
+  width: 40%;
+  text-align: center;
+  display: inline-block;
+  margin: 20px;
+  border-radius: 20px;
+  input{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: block;
+  }
+}
+@media (max-width: 800px) {
+  .search{
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 70px;
+    input{
+      width: 70%;
+    }
+  }
+  .main1{
+    height: auto;
+    padding-bottom: 50px;
+  }
+}
+.content-btn{
+  text-align: right;
+}

@@ -1,0 +1,42 @@
+<header class="everypage-head contents-width">
+<h2>予約確認</h2>
+</header>
+<div class="contents-width confirm-form">
+<%= form_with url: reservations_path do |form| %>
+  <div class="charge field">
+    <h3>一泊一人あたり料金</h3>
+    <%= @charge %>円
+  </div>
+  <div class="field">
+    <%= form.label :入室日 %>
+    <%= form.text_field :started_at, :value => @started, readonly: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :退室日 %>
+    <%= form.text_field :finished_at, :value => @finished, readonly: true %>
+  </div>
+
+  <div class="field">
+    <h3>滞在日数</h3>
+    <%= @stay %>
+  </div>
+
+  <div class="field">
+    <%= form.label :人数 %>
+    <%= form.number_field :peoples, :value => @peoples, readonly: true %>
+  </div>
+
+  <div class="field">
+    <h3>合計料金</h3>
+    <%= @stay.to_i*@peoples.to_i*@charge.to_i %>
+  </div>
+        
+  <%= form.hidden_field :user_id, :value => params[:user_id] %>
+  <%= form.hidden_field :room_id, :value => params[:room_id] %>
+
+  <div class="actions">
+    <%= form.submit '予約を完了する'%>
+  </div>
+<% end %>
+</div>

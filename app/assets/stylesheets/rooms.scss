@@ -1,0 +1,33 @@
+// Place all the styles related to the rooms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+//部屋の詳細//
+.room-detail{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  img{
+    height: 200px;
+  }
+}
+.everypage-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.room-content{
+  font-size: 18px;
+}
+.option{
+  display: flex;
+}
+.detail-contents{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.reservation-form{
+  padding: 30px;
+  border: burlywood solid 1px;
+}

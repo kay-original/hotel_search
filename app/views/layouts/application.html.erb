@@ -5,12 +5,52 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_pack_tag 'application' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header class="site-header contents-width">
+    <div class="wrapper site-header__wrapper">
+      <div class="site-header__start">
+        <%= link_to "HotelSerch", root_path, class: "brand" %>
+      </div>
+      <div class="site-header__middle">
+        <nav class="nav">
+          <ul class="nav__wrapper">
+            <% if user_signed_in? %>
+              <li class="nav__item"><%= link_to "お部屋一覧", rooms_path %></li>
+              <li class="nav__item"><%= link_to "ユーザー一覧", users_path %></li>
+              <li class="nav__item"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+              <li class="nav__item"><%= link_to 'アカウント変更', edit_user_registration_path %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "button is-success nav-item" %></li>
+            <% else %>
+              <li><%= link_to 'サインアップ', new_user_registration_path, class: "button is-info nav-item" %></li>
+              <li><%= link_to 'ログイン', new_user_session_path, class: "button is-success nav-item" %></li>
+            <% end %>
+          </ul>
+        </nav>
+        <div class="nav__toggle head-icon">
+        <% if user_signed_in? %>
+          <% if current_user.profile_image_id? %>
+            <%= image_tag current_user.profile_image_id.url %>
+          <% else %>
+            <%= image_tag "profile_icon.png" %>
+          <% end %>
+        <% else %>
+          <%= image_tag "/16_2_282.png" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+    
+
     <%= yield %>
   </body>
+  <footer>
+  kay.original©
+  </footer>
+  <%= javascript_pack_tag 'header.js'%>
 </html>
