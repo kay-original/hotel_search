@@ -1,0 +1,19 @@
+<div class="main1">
+  <h1 class="main1-header">魅力ある宿泊施設を予約</h1>  
+  <section class="search-block contents-width">
+    <div class="search">
+    <%= search_form_for @q, url: search_rooms_path do |f| %>
+      <%= f.label :address, 'エリア検索' %>
+      <%= f.search_field :address_cont %>
+      <%= f.submit '検索', class:"button is-dark is-small" %>
+    <% end %>
+    </div>
+    <div class="search">
+    <%= search_form_for @q, url: search_rooms_path do |f| %>
+      <%= f.label :introduction_or_name_or_charge_or_address, 'キーワード検索' %>
+      <%= f.search_field :introduction_or_name_or_charge_or_address_cont %>
+      <%= f.submit '検索', class:"button is-dark is-small" %>
+    <% end %>
+  </div>
+  </section>
+</div>

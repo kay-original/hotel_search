@@ -1,0 +1,32 @@
+<header class="everypage-head contents-width">
+  <h1>検索結果</h1>
+</header>
+<div class="contents-width user-card">
+  <% @results.each do |room| %>
+    <div class="card">
+    <%= link_to room_path(room.id) do %>
+      <div class="card-image">
+      <figure class="img">
+      <% if room.room_image? %>
+        <%= image_tag room.room_image.to_s %>
+      <% else %>
+        <%= image_tag "noimage.svg", :size => '100x100' %>
+      <% end %>
+      </figure>
+    </div>
+    <% end %>
+    <div class="card-bottom">
+      <div class="card-content">
+        <div class="room-content">
+          <%= link_to room.name, room_path(room.id) %><br>
+          <%= link_to room.charge, room_path(room.id) %><br>
+          <%= link_to room.address, room_path(room.id) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<br>
+

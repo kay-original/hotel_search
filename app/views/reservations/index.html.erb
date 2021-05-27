@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<header class="everypage-head contents-width">
+  <h1>予約一覧</h1>
+</header>
+<div class="contents-width reserve-index">
+<table class="reserve-table">
+  <thead>
+    <tr>
+      <th>部屋イメージ</th>
+      <th>部屋の名前</th>
+      <th>宿泊開始日</th>
+      <th>退室日</th>
+      <th>人数</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td class="reserve-image"><%= image_tag reservation.room.room_image.url %></td>
+        <td class="under-line">
+          <%= link_to reservation.room.name, room_path(reservation.room.id) %>
+        </td>
+        <td><%= reservation.started_at %></td>
+        <td><%= reservation.finished_at %></td>
+        <td><%= reservation.peoples %>人</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>

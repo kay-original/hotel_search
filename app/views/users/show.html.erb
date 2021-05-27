@@ -1,0 +1,76 @@
+<header class="everypage-head contents-width ">
+  <% if @user.id == current_user.id %>
+    <h1>マイページ</h1>
+  <% else %>
+    <h1><%= @user.username %>さんのページ</h1>
+  <% end %>
+</header>
+<section class="contents-width">
+  <div class="mypage-top">
+    <div class="mypage-icon">
+      <figure class="mypage-image">
+        <% if @user.profile_image_id? %>
+        <%= image_tag @user.profile_image_id.url %>
+        <% else %>
+        <%= image_tag "profile_icon.png" %>
+        <% end %>
+      </figure>
+      <div class="mypage-info">
+        <%= @user.username %><br>
+        <% if @user.id == current_user.id %>
+        <%= @user.email %><br>
+        <% end %>
+      </div>
+    </div>
+    <div class="mypage-date">
+      <% if @user.id == current_user.id %>
+        <%= link_to "お部屋を貸す", new_room_path %>
+        <%= link_to "予約一覧", reservations_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="mypage-profile">
+    <div class="profile-contents">
+    <% if @user.profile? %>
+      <%= @user.profile %>
+    <% else %>
+      <p>プロフィールが設定されていません</p>
+    <% end %>
+    </div>
+    <div class="edit-btn">
+      <% if @user.id == current_user.id %>
+      <%= link_to "プロフィールを編集", edit_user_path, class:"btn" %>
+      <% end %>
+    </div>
+  </div>
+</section>
+<div class="contents-width lend-content">
+<h2>〜貸す部屋〜</h2>
+<div class="lend-card">
+  <% @rooms.each do |room| %>
+    <div class="card">
+        <%= link_to room_path(room.id) do %>
+          <div class="card-image">
+            <figure class="img">
+              <% if room.room_image? %>
+                <%= image_tag room.room_image.to_s %>
+              <% else %>
+                <%= image_tag "noimage.svg" %>
+              <% end %>
+            </figure>
+          </div>
+        <% end %>
+        <div class="card-bottom">
+          <div class="card-content">
+            <div class="mypage-content">
+              <%= link_to room.name, room_path(room.id) %><br>
+              <%= link_to room.address, room_path(room.id) %><br>
+              <%= link_to room.charge, room_path(room.id) %>
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+  </div>
+</div>
